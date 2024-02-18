@@ -531,9 +531,9 @@ MonoBehaviour:
     type: 3}
   bulletsInMag: 10
   maxBullets: 10
-  isAutomatic: 0
-  fireInterval: 0.05
-  fireCooldown: 1
+  isAutomatic: 1
+  fireInterval: 1
+  fireCooldown: 2
   reloadTime: 2
 --- !u!1 &832575517
 GameObject:
