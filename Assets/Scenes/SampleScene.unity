@@ -529,6 +529,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3199342855273189327, guid: 66e735cfdcd9d0649ad092b016930e2e,
     type: 3}
+  bulletsInMag: 10
+  maxBullets: 10
+  isAutomatic: 0
+  fireInterval: 0.05
+  fireCooldown: 1
+  reloadTime: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

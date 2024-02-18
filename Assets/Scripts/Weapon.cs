@@ -12,6 +12,10 @@ public class Weapon : MonoBehaviour
     bool isReloading;
     public bool isAutomatic;
 
+    public float fireInterval = 0.1f;
+    public float fireCooldown;
+    public float reloadTime = 2;
+
     private void Start()
     {
         if (bulletsInMag == 0)
@@ -22,12 +26,14 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        fireCooldown -= Time.deltaTime;
         // semi-auto fire
         if(!isAutomatic && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
 
+        // automatic fire
         if (isAutomatic && Input.GetKey(KeyCode.Mouse0))
         {
             Shoot();
@@ -48,7 +54,7 @@ public class Weapon : MonoBehaviour
         isReloading = true;
 
         print("reloading");
-        await new WaitForSeconds(2);
+        await new WaitForSeconds(reloadTime);
         bulletsInMag = maxBullets;
 
         isReloading = false;
@@ -58,12 +64,14 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         if(isReloading) return;
+        if (fireCooldown > 0) return;
 
         if (bulletsInMag <= 0)
         {
             Reload();
             return;
         }
+
 
         bulletsInMag--;
         Instantiate(bulletPrefab, transform.position, transform.rotation);
