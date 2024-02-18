@@ -11,4 +11,18 @@ public class Health : MonoBehaviour
     {
 
     }
+
+    public void Damage(int damage)
+    {
+        hp -= damage;
+        if(hp <= 0 )
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }
