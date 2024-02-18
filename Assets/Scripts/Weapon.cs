@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     public int maxBullets = 10;
 
     bool isReloading;
-    public bool isAutomatic = true;
+    public bool isAutomatic;
 
     public float fireInterval = 0.1f;
     public float fireCooldown;

@@ -529,8 +529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3199342855273189327, guid: 66e735cfdcd9d0649ad092b016930e2e,
     type: 3}
-  bulletsInMag: 10
-  maxBullets: 10
+  bulletsInMag: 1000
+  maxBullets: 1000
   isAutomatic: 1
   fireInterval: 1
   fireCooldown: 2
