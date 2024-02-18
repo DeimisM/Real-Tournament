@@ -74,6 +74,7 @@ public class Weapon : MonoBehaviour
 
 
         bulletsInMag--;
+        fireCooldown = fireInterval;
         Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 }
