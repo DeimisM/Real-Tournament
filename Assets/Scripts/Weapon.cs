@@ -5,12 +5,67 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    // Update is called once per frame
+
+    public int bulletsInMag;
+    public int maxBullets = 10;
+
+    bool isReloading;
+    public bool isAutomatic;
+
+    private void Start()
+    {
+        if (bulletsInMag == 0)
+        {
+            bulletsInMag = maxBullets;
+        }
+    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        // semi-auto fire
+        if(!isAutomatic && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+            Shoot();
         }
+
+        if (isAutomatic && Input.GetKey(KeyCode.Mouse0))
+        {
+            Shoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
+    }
+
+    async void Reload()
+    {
+        if (bulletsInMag == maxBullets) return;
+        if (isReloading) return;
+
+
+        isReloading = true;
+
+        print("reloading");
+        await new WaitForSeconds(2);
+        bulletsInMag = maxBullets;
+
+        isReloading = false;
+        
+    }
+
+    void Shoot()
+    {
+        if(isReloading) return;
+
+        if (bulletsInMag <= 0)
+        {
+            Reload();
+            return;
+        }
+
+        bulletsInMag--;
+        Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 }

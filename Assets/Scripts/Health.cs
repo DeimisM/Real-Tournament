@@ -7,9 +7,12 @@ public class Health : MonoBehaviour
     public int hp;
     public int maxHp = 100;
 
-    private void Update()
+    private void Start()
     {
-
+        if (hp == 0)
+        {
+            hp = maxHp;
+        }
     }
 
     public void Damage(int damage)
