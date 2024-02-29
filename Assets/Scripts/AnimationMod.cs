@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,11 @@ public class AnimationMod : MonoBehaviour
 
         animator.SetFloat("ReloadTime", 1 / 2f);
         animator.SetFloat("FireRate", 1 / weapon.fireInterval);
+    }
+
+    private void ReloadAnim(bool arg0)
+    {
+        throw new NotImplementedException();
     }
 
     void RecoilAnim()

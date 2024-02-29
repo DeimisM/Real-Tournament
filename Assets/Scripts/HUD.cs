@@ -20,7 +20,7 @@ public class HUD : MonoBehaviour
 
     private void UpdateUI()
     {
-        ammoText.text = weapon.clipAmmo + "/" + weapon.ammo;
+        ammoText.text = weapon.maxAmmo + "/" + weapon.ammo;
         healthText.text = health.hp.ToString();
     }
 }

@@ -1,17 +1,92 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    Health health;
     public Weapon weapon;
-    public Health health;
+    public LayerMask weaponLayer;
+    public GameObject equipText;
+    public Transform hand;
 
-    private void OnCollisionEnter(Collision collision)
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        health = GetComponent<Health>();
+    }
+
+
+    void Update()
+    {
+        var cam = Camera.main.transform;
+        var collided = Physics.Raycast(cam.position, cam.forward, out var hit, 2f, weaponLayer);
+        equipText.SetActive(collided && !weapon);
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            health.Damage(20);
+            if (weapon == null && collided)
+            {
+                weapon = hit.transform.GetComponent<Weapon>();
+                Grab(weapon);
+            }
+            else
+            {
+                Drop();
+            }
+        }
+
+
+        if (weapon == null) return;
+
+        // manual mode
+        if (!weapon.isAutoFire && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            weapon.Shoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            weapon.onRightClick.Invoke();
+        }
+
+        // auto mode
+        if (weapon.isAutoFire && Input.GetKey(KeyCode.Mouse0))
+        {
+            weapon.Shoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && weapon.ammo < weapon.maxAmmo)
+        {
+            weapon.Reload();
+        }
+    }
+
+
+    public void Grab(Weapon newWeapon)
+    {
+        weapon = newWeapon;
+        weapon.GetComponent<Rigidbody>().isKinematic = true;
+        weapon.transform.position = hand.position;
+        weapon.transform.rotation = hand.rotation;
+        weapon.transform.parent = hand;
+    }
+
+
+    public void Drop()
+    {
+        if (weapon == null) return;
+
+        var rb = weapon.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.velocity = transform.forward * 5f;
+
+        weapon.transform.parent = null;
+        weapon = null;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            health.Damage(10);
         }
     }
 }
