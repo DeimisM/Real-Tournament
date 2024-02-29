@@ -199,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 5241267463746980526, guid: f2e0b7ae4dae8cf44955bccd3512b213,
         type: 3}
       propertyPath: m_Name
-      value: First Person Controller Minimal
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5241267463746980526, guid: f2e0b7ae4dae8cf44955bccd3512b213,
         type: 3}
@@ -1649,7 +1649,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1686232867}
-  health: {fileID: 1615544947}
+  weaponLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  equipText: {fileID: 0}
+  hand: {fileID: 0}
 --- !u!114 &1686232867 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6725037887833228001, guid: fcb9cf06c6bd1544f952dea4930721b8,
