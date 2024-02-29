@@ -214,7 +214,7 @@ MonoBehaviour:
   isAutoFire: 0
   fireInterval: 0.1
   fireCooldown: 0
-  recoilAngle: 0
+  spreadlAngle: 0
   bulletsPerShot: 1
 --- !u!65 &4067094031247544084
 BoxCollider:

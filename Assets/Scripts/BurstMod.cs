@@ -12,13 +12,13 @@ public class BurstMod : MonoBehaviour
         if (isBursting)
         {
             weapon.bulletsPerShot = 3;
-            weapon.recoilAngle = 5;
+            weapon.spreadlAngle = 5;
             weapon.isAutoFire = false;
         }
         else
         {
             weapon.bulletsPerShot = 1;
-            weapon.recoilAngle = 0;
+            weapon.spreadlAngle = 0;
             weapon.isAutoFire = true;
         }
     }

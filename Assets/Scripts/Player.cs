@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     {
         weapon = newWeapon;
         weapon.GetComponent<Rigidbody>().isKinematic = true;
+        weapon.GetComponent<BoxCollider>().enabled = false;
         weapon.transform.position = hand.position;
         weapon.transform.rotation = hand.rotation;
         weapon.transform.parent = hand;
@@ -76,6 +77,8 @@ public class Player : MonoBehaviour
 
         var rb = weapon.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        weapon.GetComponent<BoxCollider>().enabled = true;
+
         rb.velocity = transform.forward * 5f;
 
         weapon.transform.parent = null;
