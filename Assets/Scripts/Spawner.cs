@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     public List<GameObject> spawnPoints;
 
 
-    public int enemiesToSpawn;
+    int enemiesToSpawn;
     [Range(0.1f, 10f)]
     public float spawnInterval = 1f;
 
