@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public LayerMask weaponLayer;
     public GameObject equipText;
     public Transform hand;
+    public HUD hud;
+
 
     void Start()
     {
@@ -68,6 +70,11 @@ public class Player : MonoBehaviour
         weapon.transform.position = hand.position;
         weapon.transform.rotation = hand.rotation;
         weapon.transform.parent = hand;
+
+        hud.UpdateUI();
+        hud.weapon = weapon;
+        weapon.onShoot.AddListener(hud.UpdateUI);
+        weapon.onReload.AddListener(hud.UpdateUI);
     }
 
 
@@ -82,6 +89,11 @@ public class Player : MonoBehaviour
         rb.velocity = transform.forward * 5f;
 
         weapon.transform.parent = null;
+
+        hud.UpdateUI();
+        hud.weapon = weapon;
+        weapon.onShoot.RemoveListener(hud.UpdateUI);
+        weapon.onReload.RemoveListener(hud.UpdateUI);
         weapon = null;
     }
 
