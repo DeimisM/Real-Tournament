@@ -71,10 +71,12 @@ public class Player : MonoBehaviour
         weapon.transform.rotation = hand.rotation;
         weapon.transform.parent = hand;
 
-        hud.UpdateUI();
         hud.weapon = weapon;
+        hud.UpdateUI();
         weapon.onShoot.AddListener(hud.UpdateUI);
         weapon.onReload.AddListener(hud.UpdateUI);
+
+        print("weapong grabbed");
     }
 
 
@@ -90,8 +92,8 @@ public class Player : MonoBehaviour
 
         weapon.transform.parent = null;
 
-        hud.UpdateUI();
         hud.weapon = weapon;
+        hud.UpdateUI();
         weapon.onShoot.RemoveListener(hud.UpdateUI);
         weapon.onReload.RemoveListener(hud.UpdateUI);
         weapon = null;

@@ -12,6 +12,8 @@ public class Health : MonoBehaviour
     public GameObject deathEffect;
     public GameObject damageEffect;
 
+    public AudioClip damageSound;
+
     void Start()
     {
         if(hp == 0)hp = maxHp;
@@ -28,6 +30,8 @@ public class Health : MonoBehaviour
 
         if (damageEffect != null) Instantiate(damageEffect, transform.position, Quaternion.identity);
         onDamage.Invoke();
+
+        if(damageSound != null) AudioManager.Play(damageSound);
     }
 
     public void Die()
